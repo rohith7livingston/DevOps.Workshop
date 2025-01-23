@@ -1,5 +1,5 @@
 // validateForm.test.js
-
+//validating using jest
 let {validateForm }= require("./script");
 
 describe("validateForm", () => {

@@ -1,5 +1,7 @@
 {
   "devDependencies": {
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
     "nodemon": "^3.1.9"
   },
   "name": "devops.workshop",
@@ -37,7 +39,8 @@
     "undefsafe": "^2.0.5"
   },
   "scripts": {
-    "start" : "nodemon index.js"
+    "start": "nodemon index.js",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -50,3 +53,4 @@
   },
   "homepage": "https://github.com/rohith7livingston/DecOps.Workshop#readme"
 }
+

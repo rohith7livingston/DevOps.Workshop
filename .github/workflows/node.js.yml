@@ -1,4 +1,4 @@
-name: Run Tests
+name: Run Tests in Docker
 
 on:
   push:
@@ -15,18 +15,26 @@ jobs:
     runs-on: ubuntu-latest  # Use the latest Ubuntu runner
 
     steps:
+      # Checkout the code to the GitHub runner
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '16'  # Specify the version of Node.js (change as needed)
+      # Set up Docker to build the container
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
 
-      - name: Install dependencies
+      # Build the Docker image based on your Dockerfile
+      - name: Build Docker image
         run: |
-          npm install
+          docker build -t my-node-app .
 
-      - name: Run Jest tests
+      # Run tests inside the Docker container
+      - name: Run tests in Docker container
         run: |
-          npm test  # This will run the Jest tests defined in your package.json
+          docker run --rm my-node-app npm test
+          
+      # Optionally, you can push the Docker image to Docker Hub or another registry if needed
+      # - name: Push Docker image
+      #   run: |
+      #     docker tag my-node-app your-dockerhub-username/my-node-app:latest
+      #     docker push your-dockerhub-username/my-node-app:latest
